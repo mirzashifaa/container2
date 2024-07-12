@@ -1,7 +1,7 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
-           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-k8-repo/containe2',
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-k8-repo/container2',
            './app2']
 
   # Docker Push
