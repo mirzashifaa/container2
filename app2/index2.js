@@ -5,7 +5,7 @@ const csv = require('csv-parser');
 
 const app = express();
 const port = 6001;
-const persistant_storage_path = '/shifa_PV_dir'
+const persistant_storage_path = '/app/shifa_PV_dir'
 
 app.use(express.json());
 
