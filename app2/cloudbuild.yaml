@@ -2,7 +2,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
            'us-central1-docker.pkg.dev/${PROJECT_ID}/my-k8-repo/containe2',
-           '.']
+           './app2']
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
@@ -14,9 +14,9 @@ steps:
   args:
   - 'apply'
   - '-f'
-  - 'container2-deployment.yaml'
+  - './app2/container2-deployment.yaml'
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
 
 options:
