@@ -33,6 +33,7 @@ app.post('/calculate', (req, res) => {
             
             const normalizedData = {};
             for (const key in data) {
+                console.log("from container2");
                 normalizedData[key.trim()] = data[key].trim();
             }
 
