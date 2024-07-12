@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
       - name: container2
-        image: us-central1-docker.pkg.dev/kube-429214/my-k8-repo
+        image: us-central1-docker.pkg.dev/kube-429214/my-k8-repo/container2
         imagePullPolicy: Always
         ports:
         - containerPort: 6001
         volumeMounts:
-        - mountPath: /shifa_PV_dir
+        - mountPath: /app/shifa_PV_dir
           name: shifa-storage
       volumes:
       - name: shifa-storage
@@ -37,6 +37,5 @@ spec:
     app: container2
   ports:
     - protocol: TCP
-      port: 80
+      port: 6001
       targetPort: 6001
-  type: LoadBalancer
