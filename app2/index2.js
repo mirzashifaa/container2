@@ -10,10 +10,22 @@ const persistant_storage_path = '/app/shifa_PV_dir'
 app.use(express.json());
 
 app.post('/calculate', (req, res) => {
+
     const { file, product } = req.body;
     const results = [];
     const filePath = path.join(persistant_storage_path, file);
     let fileValid = true;
+
+    const fileContents = fs.readFileSync(filePath, 'utf-8');
+    const lines = fileContents.trim().split('\n');
+    const headers = lines[0].replace(/\s+$/g, "").replace(/,\s+/g, ",").split(',');
+    const productIndex = headers.indexOf('product');
+    const amountIndex = headers.indexOf('amount');
+    console.log('headers:', headers);
+
+    if (!headers|| headers.length!=2||productIndex === -1 || amountIndex === -1) {
+      return res.status(400).json({ file, error: 'Input file not in CSV format.' });
+    }
 
     fs.createReadStream(filePath)
         .pipe(csv())
