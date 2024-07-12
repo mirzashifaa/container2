@@ -1,0 +1,26 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t',
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-k8-repo/containe2',
+           '.']
+
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push',
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-k8-repo/container2']
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+  id: 'Deploy Container2'
+  args:
+  - 'apply'
+  - '-f'
+  - 'container2-deployment.yaml'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+
+  
