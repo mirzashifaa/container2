@@ -1,20 +1,20 @@
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: shifa-pv
-# spec:
-#   capacity:
-#     storage: 1Gi
-#   accessModes:
-#     - ReadWriteOnce
-#   persistantVolumeReclaimPolicy: Retain
-#   storageClassName: standard
-#   gcePersistentDisk:
-#     pdName: shifa-pv-disk
-#     fsType: ext4
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: shifa-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistantVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  gcePersistentDisk:
+    pdName: shifa-pv-disk
+    fsType: ext4
 
-#   hostPath:
-#     path: "/shifa_PV_dir"
+  hostPath:
+    path: "/shifa_PV_dir"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
