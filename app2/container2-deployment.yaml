@@ -62,7 +62,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: container2-service
+  name: container2-service2
 spec:
   selector:
     app: container2
