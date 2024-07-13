@@ -15,7 +15,7 @@ steps:
     - 'delete'
     - 'pod'
     - '-l'
-    - 'app = container2'
+    - 'app = container-2'
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
     - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
