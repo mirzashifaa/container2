@@ -7,7 +7,6 @@ spec:
     storage: 1Gi
   accessModes:
     - ReadWriteOnce
-  persistantVolumeReclaimPolicy: Retain
   storageClassName: standard
   gcePersistentDisk:
     pdName: shifa-pv-disk
