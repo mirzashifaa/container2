@@ -4,7 +4,7 @@ metadata:
   name: shifa-pv
 spec:
   capacity:
-    storage: 10Gi
+    storage: 1Gi
   accessModes:
     - ReadWriteOnce
   storageClassName: standard
@@ -24,7 +24,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 10Gi
 
 ---
 
