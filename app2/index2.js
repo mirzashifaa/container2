@@ -23,7 +23,7 @@ app.post('/calculate', (req, res) => {
     const amountIndex = headers.indexOf('amount');
     console.log('headers:', headers);
 
-    if (!headers|| headers.length!=2||productIndex === -1 || amountIndex === -1) {
+    if (!headers|| headers.length!=2) {
       return res.status(400).json({ file, error: 'Input file not in CSV format.' });
     }
 
