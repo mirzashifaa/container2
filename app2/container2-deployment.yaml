@@ -1,48 +1,15 @@
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: shifa-pv
-# spec:
-#   capacity:
-#     storage: 1Gi
-#   accessModes:
-#     - ReadWriteOnce
-#   storageClassName: standard
-#   gcePersistentDisk:
-#     pdName: shifa-pv-disk
-#     fsType: ext4
-
-#   hostPath:
-#     path: "/shifa_PV_dir"
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: shifa-pvc
-# spec:
-#   volumeName: shifa-pv
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 10Gi
-#   storageClassName: standard
-#   selector:
-#     matchLabels:
-#       name: shifa-pv
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: shifa-pv
+  name: shifa-pv-1
 spec:
   capacity:
-    storage: 1Gi
+    storage: 10Gi
   storageClassName: standard
   accessModes:
   - ReadWriteOnce
   gcePersistentDisk:
-    # pdName: shifa-pv-disk
+    pdName: shifa-disk
     fsType: ext4
 
 ---
@@ -50,60 +17,57 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: shifa-pvc
+  name: pvc-1
 spec:
-  volumeName: shifa-pv
+  volumeName: shifa-pv-1
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 1Gi
   storageClassName: standard
   selector:
     matchLabels:
-      name: shifa-pv
+      name: shifa-pv-1
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: container2-deployment
+  name: container-2
   labels:
-    app: container2
+    app: container-2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: container2
+      app: container-2
   template:
     metadata:
       labels:
-        app: container2
+        app: container-2
     spec:
       containers:
-      - name: container2
-        image: us-central1-docker.pkg.dev/kube-429214/my-k8-repo/container2
+      - name: container-2
         imagePullPolicy: Always
+        image: us-central1-docker.pkg.dev/kube-429214/my-k8-repo/container2
         ports:
         - containerPort: 6001
         volumeMounts:
-        - mountPath: /app/shifa_PV_dir
-          name: shifa-storage
+        - name: container2-data
+          mountPath: /app/shifa_PV_dir
       volumes:
-      - name: shifa-storage
+      - name: app1-data
         persistentVolumeClaim:
-          claimName: shifa-pvc
+          claimName: pvc-1
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: container2-service2
+  name: service-2
 spec:
   selector:
-    app: container2
+    app: container-2
   ports:
-    - protocol: TCP
-      port: 6001
-      targetPort: 6001
-
-
+  - protocol: TCP
+    port: 6001
+    targetPort: 6001
