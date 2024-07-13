@@ -20,11 +20,16 @@ kind: PersistentVolumeClaim
 metadata:
   name: shifa-pvc
 spec:
+  volumeName: shifa-pv
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
+  storageClassName: standard
+  selector:
+    matchLabels:
+      name: shifa-pv
 
 ---
 
