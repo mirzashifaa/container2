@@ -14,7 +14,8 @@ steps:
     args:
     - 'apply'
     - '-f'
-    - './app2/container2-deployment.yaml ./app2/shifa-pvc.yaml'
+    - './app2/container2-deployment.yaml'
+    - './app2/shifa-pvc.yaml'
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
     - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
