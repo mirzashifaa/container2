@@ -15,6 +15,12 @@ steps:
     - 'apply'
     - '-f'
     - './app2/container2-deployment.yaml'
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: 'Deploy pvc'
+    args:
+    - 'apply'
+    - '-f'
     - './app2/shifa-pvc.yaml'
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
