@@ -18,7 +18,7 @@ steps:
     - 'app = container-2'
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=cluster'
 
   - name: 'gcr.io/cloud-builders/kubectl'
     id: 'Deploy Container2'
@@ -28,7 +28,7 @@ steps:
     - './app2/container2-deployment.yaml'
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=cluster'
 
 
 options:
