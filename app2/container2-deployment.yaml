@@ -42,7 +42,7 @@ spec:
   accessModes:
   - ReadWriteOnce
   gcePersistentDisk:
-    pdName: shifa-pv-disk
+    # pdName: shifa-pv-disk
     fsType: ext4
 
 ---
